@@ -2,7 +2,7 @@
 
 ## Create a new flask environment:
 ```
-$ conda create myflaskenv pytho=3.7
-$ activate myflaskenv
+$ conda create -n flaskcourseenv flask
+$ activate flaskcourseenv
 $ pip install -r requiremens.txt --user // On windows.
 ```

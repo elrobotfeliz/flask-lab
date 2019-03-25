@@ -1,0 +1,7 @@
+{% extends "layouts/basic.html" %}
+{% block content %}
+<form action="{{ url_for('thank_you') }}">
+    <input type="text" name="email" />
+    <input type="submit" value="Send">
+</form>
+{% endblock %}

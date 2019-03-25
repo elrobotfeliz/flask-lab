@@ -1,5 +1,6 @@
 {% extends "layouts/basic.html" %}
 {% block content %}
     <h1>Content</h1>
-    <a href="{{ url_for('profile', name = 'Felipe') }}">Info</a>
+    <a href="{{ url_for('profile', name = 'Felipe') }}">Profile</a>
+    <a href="{{ url_for('info') }}">Sign up</a>
 {% endblock %}

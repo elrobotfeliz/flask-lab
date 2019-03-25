@@ -1,0 +1,14 @@
+<p>
+    {% if username %}
+        You username and password are: {{ username }} {{ password }}
+    {% else: %}
+        Enter the data:
+    {% endif %}
+
+    <form method="POSt">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }}{{ form.username() }}
+        {{ form.password.label }}{{ form.password() }}
+        {{ form.submit() }}
+    </form>
+</p>

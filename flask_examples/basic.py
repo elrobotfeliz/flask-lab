@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<h1>Root route</h1>'
+    di = { 'name': 'felipe', 'user_logged_in': True }
+    return render_template('index.html', data = di)
 
 @app.route('/info')
 def info():
@@ -12,7 +13,7 @@ def info():
 
 @app.route('/profile/<name>')
 def profile(name):
-    return 'User: {0}'.format(name[100])
+    return 'User: {0}'.format(name)
 
 if __name__ == '__main__':
     app.run(debug = True)   # DEBUG Should be disabled in production environments.

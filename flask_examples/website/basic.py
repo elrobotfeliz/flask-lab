@@ -1,13 +1,14 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, BooleanField, DateTimeField, SelectField, TextAreaField, PasswordField, SubmitField
+from wtforms.validators import DataRequired, Email
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'mysecretkey'
 
 class SignupForm(FlaskForm):
-    username = StringField("Username:")
+    username = StringField("Username:", validators=[DataRequired()])
     password = PasswordField("Password:")
     submit = SubmitField("Sign up!")
 
@@ -28,18 +29,21 @@ def sign_up():
     form = SignupForm()
 
     if form.validate_on_submit():
+        session['user'] = form.username.data
         username = form.username.data
         password = form.password.data
 
         form.username.data = ''
         form.password.data = ''
 
+        redirect(url_for('thank_you'))
+
     return render_template('signup.html', form=form, username=username, password=password)
 
 @app.route('/thank-you')
 def thank_you():
-    email = request.args.get('email')
-    return render_template('thank-you.html', email = email)
+    username = session['user']
+    return render_template('thank-you.html', username = username)
 
 @app.route('/profile/<name>')
 def profile(name):

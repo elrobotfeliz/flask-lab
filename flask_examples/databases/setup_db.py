@@ -1,4 +1,4 @@
-from inde import db, Puppy
+from index import db, Puppy
 
 # Creates all the table by transforming models into tables.
 db.create_all()
